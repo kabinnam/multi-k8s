@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t kabinnam/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t kabean/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true kabinnam/react-test npm test
+  - docker run -e CI=true kabean/react-test npm test
 
 after_success:
-  - docker build -t kabinnam/multi-client ./client
-  - docker build -t kabinnam/multi-nginx ./nginx
-  - docker build -t kabinnam/multi-server ./server
-  - docker build -t kabinnam/multi-worker ./worker
+  - docker build -t kabean/multi-client ./client
+  - docker build -t kabean/multi-nginx ./nginx
+  - docker build -t kabean/multi-server ./server
+  - docker build -t kabean/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push kabinnam/multi-client
-  - docker push kabinnam/multi-nginx
-  - docker push kabinnam/multi-server
-  - docker push kabinnam/multi-worker
+  - docker push kabean/multi-client
+  - docker push kabean/multi-nginx
+  - docker push kabean/multi-server
+  - docker push kabean/multi-worker
